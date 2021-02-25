@@ -16,35 +16,56 @@ namespace UltimateSearcher
 
         struct Result
         {
-            string google, twitter, qiita, youtube;
+            public string google;
+            public string twitter;
+            public string qiita;
+            public string youtube;
         }
 
         Result[] result = new Result[10];
 
-        int searchmode = 0;
+        enum Searchmode
+        {
+            google,twitter,qiita,youtube,none
+        }
+
+        Searchmode searchmode = new Searchmode();
 
         void resultview()
         {
             result_view.Text = result_word;
-            switch (searchmode)
+            for (int i = 0; i < 10; i++)
             {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                default:
-                    break;
+                result_view.Text += "\n";
+                switch (searchmode)
+                {
+                    case Searchmode.google:
+                        result_view.Text += result[i].google;
+                        break;
+
+                    case Searchmode.twitter:
+                        result_view.Text += result[i].twitter;
+                        break;
+
+                    case Searchmode.qiita:
+                        result_view.Text += result[i].qiita;
+                        break;
+
+                    case Searchmode.youtube:
+                        result_view.Text += result[i].youtube;
+                        break;
+
+                    default:
+                        break;
+                }
             }
         }
 
         void search()
         {
+            result_word = searchword.Text;
             string result_wordurl = HttpUtility.UrlEncode(result_word);
-            if (result_word == "")
+            if (result_word.Length == 0)
             {
                 button_google.Enabled = false;
                 button_twitter.Enabled = false;
@@ -103,30 +124,35 @@ namespace UltimateSearcher
             button_search = FindViewById<ImageButton>(Resource.Id.button_search);
             button_search.Click += button_search_Click;
 
+            for (int i = 0; i < 10; i++)
+            {
+                result[i] = new Result();
+            }
+
             search();
         }
 
         private void button_google_Click(object sender, EventArgs e)
         {
-            searchmode = 1;
+            searchmode = Searchmode.google;
             resultview();
         }
 
         private void button_twitter_Click(object sender, EventArgs e)
         {
-            searchmode = 2;
+            searchmode = Searchmode.twitter;
             resultview();
         }
 
         private void button_qiita_Click(object sender, EventArgs e)
         {
-            searchmode = 3;
+            searchmode = Searchmode.qiita;
             resultview();
         }
 
         private void button_youtube_Click(object sender, EventArgs e)
         {
-            searchmode = 4;
+            searchmode = Searchmode.youtube;
             resultview();
         }
 
