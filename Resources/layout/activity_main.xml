@@ -19,15 +19,14 @@
             android:layout_height="77.5dp"
             android:layout_weight="4"
             android:hint="検索..."
-            android:id="@+id/search_bar"
-            tools:ignore="MissingDimension,MissingInputType,HardcodedText" />
+            android:id="@+id/search_bar" />
 
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="77.5dp"
             android:layout_weight="1"
             android:background="@drawable/button_search"
-            tools:ignore="ContentDescription,MissingDimension" />
+            android:id="@+id/button_search"/>
 
      </LinearLayout>
 
@@ -39,7 +38,7 @@
             android:textSize="20dp"
             android:layout_width="match_parent"
             android:layout_height="550dp"
-            tools:ignore="MissingDimension" />
+            android:id="@+id/result_view" />
         
     </LinearLayout>
 
@@ -54,32 +53,28 @@
             android:layout_width="0dp"
             android:layout_height="70.0dp"
             android:layout_weight="1"
-            android:background="@drawable/button_google"
-            tools:ignore="ContentDescription,MissingDimension" />
+            android:background="@drawable/button_google" />
 
         <ImageButton
             android:id="@+id/button_twitter"
             android:layout_width="0dp"
             android:layout_height="70.0dp"
             android:layout_weight="1"
-            android:background="@drawable/button_twitter"
-            tools:ignore="ContentDescription,MissingDimension" />
+            android:background="@drawable/button_twitter" />
 
         <ImageButton
             android:id="@+id/button_qiita"
             android:layout_width="0dp"
             android:layout_height="70.0dp"
             android:layout_weight="1"
-            android:background="@drawable/button_qiita"
-            tools:ignore="ContentDescription,MissingDimension" />
+            android:background="@drawable/button_qiita" />
 
         <ImageButton
             android:id="@+id/button_youtube"
             android:layout_width="0dp"
             android:layout_height="70.0dp"
             android:layout_weight="1"
-            android:background="@drawable/button_youtube"
-            tools:ignore="ContentDescription,MissingDimension" />
+            android:background="@drawable/button_youtube" />
 
     </LinearLayout>
 
