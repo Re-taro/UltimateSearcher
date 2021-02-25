@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="bottom">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="Orientation,UselessParent"
+        android:gravity="center">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="77.5dp"
+            android:layout_weight="4"
+            android:hint="検索..."
+            android:id="@+id/search_bar"
+            tools:ignore="MissingDimension,MissingInputType,HardcodedText" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="77.5dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_search"
+            tools:ignore="ContentDescription,MissingDimension" />
+
+     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="550dp"
+            tools:ignore="MissingDimension" />
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/button_google"
+            android:layout_width="0dp"
+            android:layout_height="70.0dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_google"
+            tools:ignore="ContentDescription,MissingDimension" />
+
+        <ImageButton
+            android:id="@+id/button_twitter"
+            android:layout_width="0dp"
+            android:layout_height="70.0dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_twitter"
+            tools:ignore="ContentDescription,MissingDimension" />
+
+        <ImageButton
+            android:id="@+id/button_qiita"
+            android:layout_width="0dp"
+            android:layout_height="70.0dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_qiita"
+            tools:ignore="ContentDescription,MissingDimension" />
+
+        <ImageButton
+            android:id="@+id/button_youtube"
+            android:layout_width="0dp"
+            android:layout_height="70.0dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_youtube"
+            tools:ignore="ContentDescription,MissingDimension" />
+
+    </LinearLayout>
+
+</LinearLayout>
