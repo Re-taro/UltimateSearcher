@@ -44,6 +44,14 @@ namespace UltimateSearcher
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.activity_main);
 
+            var systemUiFlags = SystemUiFlags.LayoutStable
+            | SystemUiFlags.LayoutHideNavigation
+            | SystemUiFlags.LayoutFullscreen
+            | SystemUiFlags.HideNavigation
+            | SystemUiFlags.Fullscreen
+            | SystemUiFlags.ImmersiveSticky;
+            Window.DecorView.SystemUiVisibility = (StatusBarVisibility)(int)systemUiFlags;
+
             Thread thread1 = new Thread(
                 () =>
                 {
