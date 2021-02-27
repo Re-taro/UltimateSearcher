@@ -4,8 +4,8 @@ using Android.Support.V7.App;
 using Android.Runtime;
 using Android.Widget;
 using Android.Views;
-using System.Web.NBitcoin;
 using System;
+using System.Web.NBitcoin;
 using System.Threading;
 
 namespace UltimateSearcher
@@ -52,6 +52,7 @@ namespace UltimateSearcher
             | SystemUiFlags.Fullscreen
             | SystemUiFlags.ImmersiveSticky;
             Window.DecorView.SystemUiVisibility = (StatusBarVisibility)(int)systemUiFlags;
+
 
             Thread thread1 = new Thread(
                 () =>
