@@ -31,7 +31,7 @@ namespace UltimateSearcher
 
 
         public TextView result_view { get; private set; }
-        public EditText searchword { get; private set; }
+        public TextView searchword { get; private set; }
 
         public ImageButton button_google { get; private set; }
         public ImageButton button_twitter { get; private set; }
@@ -57,7 +57,7 @@ namespace UltimateSearcher
                 {
                     result_view = FindViewById<TextView>(Resource.Id.result_view);
 
-                    searchword = FindViewById<EditText>(Resource.Id.search_bar);
+                    searchword = FindViewById<TextView>(Resource.Id.search_bar);
 
                     button_google = FindViewById<ImageButton>(Resource.Id.button_google);
                     button_google.Click += button_google_Click;
