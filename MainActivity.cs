@@ -39,6 +39,7 @@ namespace UltimateSearcher
         public ImageButton button_youtube { get; private set; }
         public ImageButton button_search { get; private set; }
 
+
         protected override void OnCreate(Bundle savedInstanceState)
         {  base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
