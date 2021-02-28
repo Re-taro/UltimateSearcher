@@ -17,5 +17,10 @@
             const string key = "NwW6iaXogF7P3s2fNxX8cOZxT";
             return key;
         }
+        public static string Twitter_API_Secret()
+        {
+            const string secret = "y9WqKRLADQsV4aJhM4yH367812xptQYnfFUmwQh620l0UGir9k";
+            return secret;
+        }
     }
 }
