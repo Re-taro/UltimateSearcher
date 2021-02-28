@@ -63,6 +63,15 @@ namespace UltimateSearcher
                     result_view = FindViewById<TextView>(Resource.Id.result_view);
 
                     searchword = FindViewById<EditText>(Resource.Id.search_bar);
+                    searchword.KeyPress += (object sender, View.KeyEventArgs e) =>
+                    {
+                        e.Handled = false;
+                        if (e.Event.Action == KeyEventActions.Down && e.KeyCode == Keycode.Enter)
+                        {
+
+                            e.Handled = true;
+                        }
+                    };
 
                     button_google = FindViewById<ImageButton>(Resource.Id.button_google);
                     button_google.Click += button_google_Click;
@@ -90,16 +99,6 @@ namespace UltimateSearcher
             {
                 result[i] = new Result();
             }
-
-            searchword.KeyPress += (object sender, View.KeyEventArgs e) =>
-            {
-                e.Handled = false;
-                if (e.Event.Action == KeyEventActions.Down && e.KeyCode == Keycode.Enter)
-                {
-                    /*ここに検索する関数を入れたいbutton_search_Clickをそういうやつにできないかな？*/
-                    e.Handled = true;
-                }
-            };
         }
 
         void resultview()
