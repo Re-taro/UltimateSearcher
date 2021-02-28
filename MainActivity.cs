@@ -96,7 +96,7 @@ namespace UltimateSearcher
                 e.Handled = false;
                 if (e.Event.Action == KeyEventActions.Down && e.KeyCode == Keycode.Enter)
                 {
-
+                    /*ここに検索する関数を入れたいbutton_search_Clickをそういうやつにできないかな？*/
                     e.Handled = true;
                 }
             };
@@ -154,6 +154,7 @@ namespace UltimateSearcher
 
         private void button_search_Click(object sender, EventArgs e)
         {
+            /*ここに検索の処理API叩いてURLをresultに渡すところ*/
             if (searchword.Text.Length == 0)
             {
                 button_google.Enabled = false;
