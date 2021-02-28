@@ -40,7 +40,32 @@ namespace UltimateSearcher
         public ImageButton button_youtube { get; private set; }
         public ImageButton button_search { get; private set; }
 
-        public bool Handled { get; set; }
+        public void search()
+        {
+            /*ここに検索の処理API叩いてURLをresultに渡すところ*/
+            if (searchword.Text.Length == 0)
+            {
+                button_google.Enabled = false;
+                button_twitter.Enabled = false;
+                button_qiita.Enabled = false;
+                button_youtube.Enabled = false;
+            }
+            else
+            {
+                string result_viewurl = HttpUtility.UrlEncode(searchword.Text);
+                button_google.Enabled = true;
+                button_twitter.Enabled = true;
+                button_qiita.Enabled = true;
+                button_youtube.Enabled = true;
+                for (int i = 0; i < 10; i++)
+                {
+                    result[i].google = "google" + i.ToString();
+                    result[i].twitter = "twitter" + i.ToString();
+                    result[i].qiita = "qiita" + i.ToString();
+                    result[i].youtube = "youtube" + i.ToString();
+                }
+            }
+        }
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -68,7 +93,7 @@ namespace UltimateSearcher
                         e.Handled = false;
                         if (e.Event.Action == KeyEventActions.Down && e.KeyCode == Keycode.Enter)
                         {
-
+                            search();
                             e.Handled = true;
                         }
                     };
@@ -153,29 +178,7 @@ namespace UltimateSearcher
 
         private void button_search_Click(object sender, EventArgs e)
         {
-            /*ここに検索の処理API叩いてURLをresultに渡すところ*/
-            if (searchword.Text.Length == 0)
-            {
-                button_google.Enabled = false;
-                button_twitter.Enabled = false;
-                button_qiita.Enabled = false;
-                button_youtube.Enabled = false;
-            }
-            else
-            {
-                string result_viewurl = HttpUtility.UrlEncode(searchword.Text);
-                button_google.Enabled = true;
-                button_twitter.Enabled = true;
-                button_qiita.Enabled = true;
-                button_youtube.Enabled = true;
-                for (int i = 0; i < 10; i++)
-                {
-                    result[i].google = "google" + i.ToString();
-                    result[i].twitter = "twitter" + i.ToString();
-                    result[i].qiita = "qiita" + i.ToString();
-                    result[i].youtube = "youtube" + i.ToString();
-                }
-            }
+            search();
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
