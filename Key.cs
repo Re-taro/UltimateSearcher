@@ -27,5 +27,10 @@
             const string token = "y9WqKRLADQsV4aJhM4yH367812xptQYnfFUmwQh620l0UGir9k";
             return token;
         }
+        public static string Twitter_API_Token_Secret()
+        {
+            const string secret = "Ft5wOYcptKAZeGTrhbUyW39NbJnSrUcxizuyXnCZZxtWK";
+            return secret;
+        }
     }
 }
