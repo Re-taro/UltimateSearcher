@@ -32,5 +32,10 @@
             const string secret = "Ft5wOYcptKAZeGTrhbUyW39NbJnSrUcxizuyXnCZZxtWK";
             return secret;
         }
+        public static string Qiita_Token()
+        {
+            const string token = "e64d88ee2d556632b35029c521dc58f01e8ee11f";
+            return token;
+        }
     }
 }
