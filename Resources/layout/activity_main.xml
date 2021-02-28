@@ -20,6 +20,8 @@
             android:layout_height="77.5dp"
             android:layout_weight="4"
             android:hint="検索..."
+            android:imeOptions="actionSearch"
+            android:inputType="textAutoCorrect"
             android:id="@+id/search_bar" />
 
         <ImageButton

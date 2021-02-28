@@ -8,6 +8,7 @@ using System;
 using System.Web.NBitcoin;
 using System.Threading;
 
+
 namespace UltimateSearcher
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true, ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
@@ -38,6 +39,8 @@ namespace UltimateSearcher
         public ImageButton button_qiita { get; private set; }
         public ImageButton button_youtube { get; private set; }
         public ImageButton button_search { get; private set; }
+
+        public bool Handled { get; set; }
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -87,6 +90,16 @@ namespace UltimateSearcher
             {
                 result[i] = new Result();
             }
+
+            searchword.KeyPress += (object sender, View.KeyEventArgs e) =>
+            {
+                e.Handled = false;
+                if (e.Event.Action == KeyEventActions.Down && e.KeyCode == Keycode.Enter)
+                {
+
+                    e.Handled = true;
+                }
+            };
         }
 
         void resultview()
