@@ -12,5 +12,10 @@
             const string ID = "b50c20bc1734a5eb0";
             return ID;
         }
+        public static string Twitter_API_Key()
+        {
+            const string key = "NwW6iaXogF7P3s2fNxX8cOZxT";
+            return key;
+        }
     }
 }
