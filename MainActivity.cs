@@ -6,7 +6,7 @@ using Android.Widget;
 using Android.Views;
 using System;
 using System.Web.NBitcoin;
-using System.Threading;
+using System.Threading.Tasks;
 using System.Net;
 using System.IO;
 using System.Text;
@@ -46,9 +46,6 @@ namespace UltimateSearcher
 
         public void search()
         {
-            string result_url = HttpUtility.UrlEncode(searchword.Text);
-            
-
             if (searchword.Text.Length == 0)
             {
                 button_google.Enabled = false;
@@ -58,18 +55,16 @@ namespace UltimateSearcher
             }
             else
             {
+                Task google = Task.Run(() =>
+                {
+                    string SW_url = HttpUtility.UrlEncode(searchword.Text);
+                    String API = "https://www.googleapis.com/customsearch/v1?/key="+ 
+                })
                 string result_viewurl = HttpUtility.UrlEncode(searchword.Text);
                 button_google.Enabled = true;
                 button_twitter.Enabled = true;
                 button_qiita.Enabled = true;
                 button_youtube.Enabled = true;
-                for (int i = 0; i < 10; i++)
-                {
-                    result[i].google = "google" + i.ToString();
-                    result[i].twitter = "twitter" + i.ToString();
-                    result[i].qiita = "qiita" + i.ToString();
-                    result[i].youtube = "youtube" + i.ToString();
-                }
             }
         }
 
