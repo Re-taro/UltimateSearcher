@@ -7,6 +7,10 @@ using Android.Views;
 using System;
 using System.Web.NBitcoin;
 using System.Threading;
+using System.Net;
+using System.IO;
+using System.Text;
+using Newtonsoft.Json.Linq;
 
 
 namespace UltimateSearcher
