@@ -46,7 +46,7 @@ namespace UltimateSearcher
 
         public void search()
         {
-            /*ここに検索の処理API叩いてURLをresultに渡すところ*/
+            
             if (searchword.Text.Length == 0)
             {
                 button_google.Enabled = false;
