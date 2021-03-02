@@ -46,7 +46,9 @@ namespace UltimateSearcher
 
         public void search()
         {
+            string SW_url = HttpUtility.UrlEncode(searchword.Text);
             
+
             if (searchword.Text.Length == 0)
             {
                 button_google.Enabled = false;
