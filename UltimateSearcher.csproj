@@ -101,6 +101,9 @@
     <AndroidResource Include="Resources\drawable\button_google.xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="CoreTweet">
+      <Version>1.0.0.483</Version>
+    </PackageReference>
     <PackageReference Include="NBitcoin">
       <Version>5.0.75</Version>
     </PackageReference>

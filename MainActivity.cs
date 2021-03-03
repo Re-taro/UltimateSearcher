@@ -69,7 +69,23 @@ namespace UltimateSearcher
                         results[1, 0, i] = i.ToString();
                         url[i] = results[0, 0, i];
                     }
-                    button_google.Enabled = false;
+                    button_google.Enabled = true;
+                });
+                Task twitter = Task.Run(async () =>
+                {
+                    button_twitter.Enabled = false;
+                    int i = 0;
+                    var token = CoreTweet.Tokens.Create(Key.Twitter_API(), Key.Twitter_API_SECRET(), Key.Twitter_Token(), Key.Twitter_Token_SECRET());
+                    var result_T = await token.Search.TweetsAsync(count => 10, q => searchword.Text);
+
+                    foreach(var tweet in result_T)
+                    {
+                        results[0, 1, i] = "https://twitter.com/" + tweet.User.Id + "/status/" + tweet.Id;
+                        results[1, 1, i] = tweet.Text.Substring(0, 40) + "...";
+                        url[i] = results[0, 1, i];
+                        i++;
+                    }
+                    button_twitter.Enabled = true;
                 });
             }
         }
