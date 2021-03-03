@@ -11,6 +11,7 @@ using System.Net;
 using System.IO;
 using System.Text;
 using Newtonsoft.Json.Linq;
+using Xamarin.Essentials;
 
 
 namespace UltimateSearcher
@@ -18,12 +19,59 @@ namespace UltimateSearcher
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true, ScreenOrientation = Android.Content.PM.ScreenOrientation.Portrait)]
     public class MainActivity : AppCompatActivity
     {
-        struct Result
+        /*
+         * 配列メモ
+         * 
+         * google:0
+         * twitter:1
+         * qiita:2
+         * youtube:3
+         * 
+         * url:0
+         * title:1
+         */
+
+        string[,,] results = new string[2, 4, 10];
+        string[] url = new string[10];
+
+        public async void web(string url)
         {
-            public string google;
-            public string twitter;
-            public string qiita;
-            public string youtube;
+            try
+            {
+                await Browser.OpenAsync(url, BrowserLaunchMode.SystemPreferred);
+            }
+            catch (Exception) { }
+        }
+
+        public void search()
+        {
+            if (searchword.Text.Length == 0)
+            {
+                button_google.Enabled = false;
+                button_twitter.Enabled = false;
+                button_qiita.Enabled = false;
+                button_youtube.Enabled = false;
+            }
+            else
+            {
+                Task google = Task.Run(() =>
+                {
+                    button_google.Enabled = false;
+                    string SW_url = HttpUtility.UrlEncode(searchword.Text);
+                    String API = "https://www.googleapis.com/customsearch/v1?/key=" + Key.Google_API() + "&cx=" + Key.CSE_ID() + "&q=" + SW_url;
+                    WebRequest request = WebRequest.Create(API);
+                    WebResponse Res = request.GetResponse();
+                    StreamReader reader = new StreamReader(Res.GetResponseStream(), new UTF8Encoding(false));
+                    var google_json = JArray.Parse(reader.ReadToEnd());
+                    for (int i = 0; i < 10; i++)
+                    {
+                        results[0, 0, i] = i.ToString();
+                        results[1, 0, i] = i.ToString();
+                        url[i] = results[0, 0, i];
+                    }
+                    button_google.Enabled = false;
+                });
+            }
         }
 
         enum Searchmode
