@@ -104,6 +104,11 @@ namespace UltimateSearcher
                     }
                     button_qiita.Enabled = true;
                 });
+                Task youtube = Task.Run(() =>
+                {
+                    button_youtube.Enabled = false;
+                    String API = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&q=" + searchword.Text + "&key=" + Key.Google_API();
+                });
             }
         }
 
