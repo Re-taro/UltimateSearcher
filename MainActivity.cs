@@ -65,8 +65,8 @@ namespace UltimateSearcher
                     var google_json = JArray.Parse(reader.ReadToEnd());
                     for (int i = 0; i < 10; i++)
                     {
-                        results[0, 0, i] = i.ToString();
-                        results[1, 0, i] = i.ToString();
+                        results[0, 0, i] = google_json[i]["link"].ToString();
+                        results[1, 0, i] = google_json[i]["title"].ToString();
                         url[i] = results[0, 0, i];
                     }
                     button_google.Enabled = true;
@@ -87,7 +87,23 @@ namespace UltimateSearcher
                     }
                     button_twitter.Enabled = true;
                 });
-
+                Task qiita = Task.Run(() =>
+                {
+                    button_qiita.Enabled = false;
+                    string SW_url = HttpUtility.UrlEncode(searchword.Text);
+                    String API = "https://qiita.com/api/v2/items?/page=1&per_page=10&query=tag%3A" + SW_url + "HTTP/1.1";
+                    WebRequest request = WebRequest.Create(API);
+                    WebResponse Res = request.GetResponse();
+                    StreamReader reader = new StreamReader(Res.GetResponseStream(), new UTF8Encoding(false));
+                    var qiita_json = JArray.Parse(reader.ReadToEnd());
+                    for (int i = 0; i < 10; i++)
+                    {
+                        results[0, 2, i] = qiita_json[i]["url"].ToString();
+                        results[1, 2, i] = qiita_json[i]["title"].ToString();
+                        url[i] = results[0, 2, i];
+                    }
+                    button_qiita.Enabled = true;
+                });
             }
         }
 
