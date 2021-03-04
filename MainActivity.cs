@@ -183,57 +183,94 @@ namespace UltimateSearcher
             result_view[8] = FindViewById<TextView>(Resource.Id.result_view8);
             result_view[9] = FindViewById<TextView>(Resource.Id.result_view9);
 
-
+            result_view[0].Click += Click0;
+            result_view[1].Click += Click1;
+            result_view[2].Click += Click2;
+            result_view[3].Click += Click3;
+            result_view[4].Click += Click4;
+            result_view[5].Click += Click5;
+            result_view[6].Click += Click6;
+            result_view[7].Click += Click7;
+            result_view[8].Click += Click8;
+            result_view[9].Click += Click9;
         }
 
-        void resultview()
+        private void Click0(object sender, EventArgs e)
         {
-            result_view.Text = searchword.Text;
+            web(url[0]);
+        }
+
+        private void Click1(object sender, EventArgs e)
+        {
+            web(url[1]);
+        }
+
+        private void Click2(object sender, EventArgs e)
+        {
+            web(url[2]);
+        }
+
+        private void Click3(object sender, EventArgs e)
+        {
+            web(url[3]);
+        }
+
+        private void Click4(object sender, EventArgs e)
+        {
+            web(url[4]);
+        }
+
+        private void Click5(object sender, EventArgs e)
+        {
+            web(url[5]);
+        }
+
+        private void Click6(object sender, EventArgs e)
+        {
+            web(url[6]);
+        }
+
+        private void Click7(object sender, EventArgs e)
+        {
+            web(url[7]);
+        }
+
+        private void Click8(object sender, EventArgs e)
+        {
+            web(url[8]);
+        }
+
+        private void Click9(object sender, EventArgs e)
+        {
+            web(url[9]);
+        }
+
+        void resultview(int s)
+        {
             for (int i = 0; i < 10; i++)
             {
-                result_view.Text += "\n";
-                switch (searchmode)
-                {
-                    case Searchmode.google:
-                        result_view.Text += result[i].google;
-                        break;
-                    case Searchmode.twitter:
-                        result_view.Text += result[i].twitter;
-                        break;
-                    case Searchmode.qiita:
-                        result_view.Text += result[i].qiita;
-                        break;
-                    case Searchmode.youtube:
-                        result_view.Text += result[i].youtube;
-                        break;
-                    default:
-                        break;
-                }
+                result_view[i].Text = results[1, s, i] + "\n";
             }
         }
 
         private void button_google_Click(object sender, EventArgs e)
         {
-            searchmode = Searchmode.google;
-            resultview();
+            resultview(0);
         }
 
         private void button_twitter_Click(object sender, EventArgs e)
         {
-            searchmode = Searchmode.twitter;
-            resultview();
+            resultview(1);
         }
 
         private void button_qiita_Click(object sender, EventArgs e)
         {
-            searchmode = Searchmode.qiita;
-            resultview();
+            resultview(2);
         }
 
         private void button_youtube_Click(object sender, EventArgs e)
         {
-            searchmode = Searchmode.youtube;
-            resultview();
+            resultview(3);
         }
 
         private void button_search_Click(object sender, EventArgs e)
