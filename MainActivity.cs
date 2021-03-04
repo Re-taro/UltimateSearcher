@@ -109,19 +109,11 @@ namespace UltimateSearcher
                     button_youtube.Enabled = false;
                     String API = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&q=" + searchword.Text + "&key=" + Key.Google_API();
                 });
+                string result_view_url = HttpUtility.UrlEncode(searchword.Text);
             }
         }
 
-        enum Searchmode
-        {
-            google,twitter,qiita,youtube,none
-        }
-
-        Result[] result = new Result[10];
-        Searchmode searchmode = new Searchmode();
-
-
-        public TextView result_view { get; private set; }
+        public TextView[] result_view { get; private set; } = new TextView[10];
         public EditText searchword { get; private set; }
 
         public ImageButton button_google { get; private set; }
@@ -130,29 +122,7 @@ namespace UltimateSearcher
         public ImageButton button_youtube { get; private set; }
         public ImageButton button_search { get; private set; }
 
-        public void search()
-        {
-            if (searchword.Text.Length == 0)
-            {
-                button_google.Enabled = false;
-                button_twitter.Enabled = false;
-                button_qiita.Enabled = false;
-                button_youtube.Enabled = false;
-            }
-            else
-            {
-                Task google = Task.Run(() =>
-                {
-                    string SW_url = HttpUtility.UrlEncode(searchword.Text);
-                    String API = "https://www.googleapis.com/customsearch/v1?/key="+ 
-                })
-                string result_viewurl = HttpUtility.UrlEncode(searchword.Text);
-                button_google.Enabled = true;
-                button_twitter.Enabled = true;
-                button_qiita.Enabled = true;
-                button_youtube.Enabled = true;
-            }
-        }
+        public bool Handled { get; set; }
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -169,11 +139,9 @@ namespace UltimateSearcher
             Window.DecorView.SystemUiVisibility = (StatusBarVisibility)(int)systemUiFlags;
 
 
-            Thread thread1 = new Thread(
+            Task thread1 = Task.Run(
                 () =>
                 {
-                    result_view = FindViewById<TextView>(Resource.Id.result_view);
-
                     searchword = FindViewById<EditText>(Resource.Id.search_bar);
                     searchword.KeyPress += (object sender, View.KeyEventArgs e) =>
                     {
@@ -191,9 +159,8 @@ namespace UltimateSearcher
                     button_twitter = FindViewById<ImageButton>(Resource.Id.button_twitter);
                     button_twitter.Click += button_twitter_Click;
                 });
-            thread1.Start();
 
-            Thread thread2 = new Thread(
+            Task thread2 = Task.Run(
                 () =>
                 {
                     button_qiita = FindViewById<ImageButton>(Resource.Id.button_qiita);
@@ -205,12 +172,18 @@ namespace UltimateSearcher
                     button_search = FindViewById<ImageButton>(Resource.Id.button_search);
                     button_search.Click += button_search_Click;
                 });
-            thread2.Start();
+            result_view[0] = FindViewById<TextView>(Resource.Id.result_view0);
+            result_view[1] = FindViewById<TextView>(Resource.Id.result_view1);
+            result_view[2] = FindViewById<TextView>(Resource.Id.result_view2);
+            result_view[3] = FindViewById<TextView>(Resource.Id.result_view3);
+            result_view[4] = FindViewById<TextView>(Resource.Id.result_view4);
+            result_view[5] = FindViewById<TextView>(Resource.Id.result_view5);
+            result_view[6] = FindViewById<TextView>(Resource.Id.result_view6);
+            result_view[7] = FindViewById<TextView>(Resource.Id.result_view7);
+            result_view[8] = FindViewById<TextView>(Resource.Id.result_view8);
+            result_view[9] = FindViewById<TextView>(Resource.Id.result_view9);
 
-            for (int i = 0; i < 10; i++)
-            {
-                result[i] = new Result();
-            }
+
         }
 
         void resultview()
