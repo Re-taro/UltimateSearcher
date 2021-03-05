@@ -108,6 +108,10 @@ namespace UltimateSearcher
                 {
                     button_youtube.Enabled = false;
                     String API = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&q=" + searchword.Text + "&key=" + Key.Google_API();
+                    WebRequest request = WebRequest.Create(API);
+                    WebResponse Res = request.GetResponse();
+                    StreamReader reader = new StreamReader(Res.GetResponseStream(), new UTF8Encoding(false));
+                    var youtube_json = JArray.Parse(reader.ReadToEnd());
                 });
                 string result_view_url = HttpUtility.UrlEncode(searchword.Text);
             }
