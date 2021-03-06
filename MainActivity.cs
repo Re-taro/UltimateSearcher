@@ -112,6 +112,13 @@ namespace UltimateSearcher
                     WebResponse Res = request.GetResponse();
                     StreamReader reader = new StreamReader(Res.GetResponseStream(), new UTF8Encoding(false));
                     var youtube_json = JArray.Parse(reader.ReadToEnd());
+                    for (int i = 0; i < 10; i++)
+                    {
+                        try
+                        {
+
+                        }
+                    }
                 });
                 string result_view_url = HttpUtility.UrlEncode(searchword.Text);
             }
