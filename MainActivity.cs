@@ -65,8 +65,8 @@ namespace UltimateSearcher
                     var google_json = JArray.Parse(reader.ReadToEnd());
                     for (int i = 0; i < 10; i++)
                     {
-                        results[0, 0, i] = google_json[i]["link"].ToString();
-                        results[1, 0, i] = google_json[i]["title"].ToString();
+                        results[0, 0, i] = google_json["response"][0]["items"][i]["link"].ToString();
+                        results[1, 0, i] = google_json["response"][0]["items"][i]["title"].ToString();
                         url[i] = results[0, 0, i];
                     }
                     button_google.Enabled = true;
@@ -116,9 +116,10 @@ namespace UltimateSearcher
                     {
                         try
                         {
-                            
+                            results[0, 3, i] = "https://www.youtube.com/watch?v=" + youtube_json["items"][i]["id"]["videoid"].ToString();
                         }
                         catch (Exception) { }
+                        results[1, 3, i] = youtube_json["items"][i]["snipets"]["title"].ToString();
                     }
                 });
                 string result_view_url = HttpUtility.UrlEncode(searchword.Text);
