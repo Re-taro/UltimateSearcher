@@ -76,12 +76,19 @@ namespace UltimateSearcher
                     button_twitter.Enabled = false;
                     int i = 0;
                     var token = CoreTweet.Tokens.Create(Key.Twitter_API(), Key.Twitter_API_SECRET(), Key.Twitter_Token(), Key.Twitter_Token_SECRET());
-                    var result_T = await token.Search.TweetsAsync(count => 10, q => searchword.Text);
+                    var result = await token.Search.TweetsAsync(count => 10, q => searchword.Text.ToString());
 
-                    foreach(var tweet in result_T)
+                    foreach(var tweet in result)
                     {
                         results[0, 1, i] = "https://twitter.com/" + tweet.User.Id + "/status/" + tweet.Id;
-                        results[1, 1, i] = tweet.Text.Substring(0, 40) + "...";
+                        try
+                        {
+                            results[1, 1, i] = tweet.Text.Substring(0, 40) + "...";
+                        }
+                        catch (Exception)
+                        {
+                            results[1, 1, i] = tweet.Text;
+                        }
                         url[i] = results[0, 1, i];
                         i++;
                     }
