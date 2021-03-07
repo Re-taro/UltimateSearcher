@@ -98,7 +98,7 @@ namespace UltimateSearcher
                 {
                     button_qiita.Enabled = false;
                     string SW_url = HttpUtility.UrlEncode(searchword.Text);
-                    String API = "https://qiita.com/api/v2/items?/page=1&per_page=10&query=tag%3A" + SW_url + "HTTP/1.1";
+                    String API = "https://qiita.com/api/v2/items?page=1&per_page=10&query=tag%3A" + SW_url + " HTTP/1.1";
                     WebRequest request = WebRequest.Create(API);
                     WebResponse Res = request.GetResponse();
                     StreamReader reader = new StreamReader(Res.GetResponseStream(), new UTF8Encoding(false));
