@@ -120,6 +120,7 @@ namespace UltimateSearcher
                         }
                         catch (Exception) { }
                         results[1, 3, i] = youtube_json["items"][i]["snipets"]["title"].ToString();
+                        url[i] = results[0, 3, i];
                     }
                     button_youtube.Enabled = true;
                 });
