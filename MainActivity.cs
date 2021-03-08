@@ -58,16 +58,23 @@ namespace UltimateSearcher
                 {
                     button_google.Enabled = false;
                     string SW_url = HttpUtility.UrlEncode(searchword.Text);
-                    String API = "https://www.googleapis.com/customsearch/v1?/key=" + Key.Google_API() + "&cx=" + Key.CSE_ID() + "&q=" + SW_url;
+                    String API = "https://www.googleapis.com/customsearch/v1?key=" + Key.Google_API() + "&cx=" + Key.CSE_ID() + "&q=" + SW_url;
                     WebRequest request = WebRequest.Create(API);
                     WebResponse Res = request.GetResponse();
-                    StreamReader reader = new StreamReader(Res.GetResponseStream(), new UTF8Encoding(false));
-                    var google_json = JArray.Parse(reader.ReadToEnd());
+                    StreamReader reader = new StreamReader(Res.GetResponseStream(), new UTF8Encoding(true));
+                    var google_json = JObject.Parse(reader.ReadToEnd());
                     for (int i = 0; i < 10; i++)
                     {
-                        results[0, 0, i] = google_json["response"][0]["items"][i]["link"].ToString();
-                        results[1, 0, i] = google_json["response"][0]["items"][i]["title"].ToString();
-                        url[i] = results[0, 0, i];
+                        try
+                        {
+                            results[0, 0, i] = google_json["items"][i]["link"].ToString();
+                            results[1, 0, i] = google_json["items"][i]["title"].ToString();
+                            url[i] = results[0, 0, i];
+                        }
+                        catch
+                        {
+                            break;
+                        }
                     }
                     button_google.Enabled = true;
                 });
@@ -118,7 +125,7 @@ namespace UltimateSearcher
                     WebRequest request = WebRequest.Create(API);
                     WebResponse Res = request.GetResponse();
                     StreamReader reader = new StreamReader(Res.GetResponseStream(), new UTF8Encoding(false));
-                    var youtube_json = JArray.Parse(reader.ReadToEnd());
+                    var youtube_json = JObject.Parse(reader.ReadToEnd());
                     for (int i = 0; i < 10; i++)
                     {
                         try
