@@ -58,7 +58,7 @@ namespace UltimateSearcher
                 {
                     button_google.Enabled = false;
                     string SW_url = HttpUtility.UrlEncode(searchword.Text);
-                    String API = "https://www.googleapis.com/customsearch/v1?key=" + Key.Google_API() + "&cx=" + Key.CSE_ID() + "&q=" + SW_url;
+                    String API = "https://www.googleapis.com/customsearch/v1?key=" + Key.Google_API() + "&cx=" + Key.CSE_ID() + "&lr=lang_ja" + "&q=" + SW_url;
                     WebRequest request = WebRequest.Create(API);
                     WebResponse Res = request.GetResponse();
                     StreamReader reader = new StreamReader(Res.GetResponseStream(), new UTF8Encoding(true));
@@ -121,7 +121,8 @@ namespace UltimateSearcher
                 Task youtube = Task.Run(() =>
                 {
                     button_youtube.Enabled = false;
-                    String API = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=10&q=" + searchword.Text + "&key=" + Key.Google_API();
+                    string SW_url = HttpUtility.UrlEncode(searchword.Text);
+                    String API = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=10&q=" + SW_url + "&key=" + Key.Google_API();
                     WebRequest request = WebRequest.Create(API);
                     WebResponse Res = request.GetResponse();
                     StreamReader reader = new StreamReader(Res.GetResponseStream(), new UTF8Encoding(false));
