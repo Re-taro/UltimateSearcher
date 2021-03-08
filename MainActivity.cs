@@ -108,7 +108,7 @@ namespace UltimateSearcher
                     String API = "https://qiita.com/api/v2/items?page=1&per_page=10&query=tag%3A" + SW_url + " HTTP/1.1";
                     WebRequest request = WebRequest.Create(API);
                     WebResponse Res = request.GetResponse();
-                    StreamReader reader = new StreamReader(Res.GetResponseStream(), new UTF8Encoding(false));
+                    StreamReader reader = new StreamReader(Res.GetResponseStream(), new UTF8Encoding(true));
                     var qiita_json = JArray.Parse(reader.ReadToEnd());
                     for (int i = 0; i < 10; i++)
                     {
@@ -121,8 +121,8 @@ namespace UltimateSearcher
                 Task youtube = Task.Run(() =>
                 {
                     button_youtube.Enabled = false;
-                    string SW_url = HttpUtility.UrlEncode(searchword.Text);
-                    String API = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=10&q=" + SW_url + "&key=" + Key.Google_API();
+                    /*string SW_url = HttpUtility.UrlEncode(searchword.Text);*/
+                    String API = "https://www.googleapis.com/youtube/v3/search?type=video&part=snippet&maxResults=10&q=" + searchword.Text + "&key=" + Key.Google_API();
                     WebRequest request = WebRequest.Create(API);
                     WebResponse Res = request.GetResponse();
                     StreamReader reader = new StreamReader(Res.GetResponseStream(), new UTF8Encoding(false));
