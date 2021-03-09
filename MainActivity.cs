@@ -112,7 +112,6 @@ namespace UltimateSearcher
                     {
                         results[0, 2, i] = qiita_json[i]["url"].ToString();
                         results[1, 2, i] = qiita_json[i]["title"].ToString();
-                        url[i] = results[0, 2, i];
                     }
                     button_qiita.Enabled = true;
                 });
@@ -129,11 +128,14 @@ namespace UltimateSearcher
                     {
                         try
                         {
-                            results[0, 3, i] = "https://www.youtube.com/watch?v=" + youtube_json["items"][i]["id"]["videoid"].ToString();
+                            string videoId = youtube_json["items"][i]["id"]["videoId"].ToString();
+                            results[0, 3, i] = "https://www.youtube.coom/watch?v=" + videoId.ToString();
+                            results[1, 3, i] = youtube_json["items"][i]["snippet"]["title"].ToString();
                         }
-                        catch (Exception) { }
-                        results[1, 3, i] = youtube_json["items"][i]["snipets"]["title"].ToString();
-                        url[i] = results[0, 3, i];
+                        catch (Exception)
+                        {
+                            break;
+                        }
                     }
                     button_youtube.Enabled = true;
                 });
