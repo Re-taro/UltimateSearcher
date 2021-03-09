@@ -95,7 +95,6 @@ namespace UltimateSearcher
                         {
                             results[1, 1, i] = tweet.Text;
                         }
-                        url[i] = results[0, 1, i];
                         i++;
                     }
                     button_twitter.Enabled = true;
