@@ -280,6 +280,7 @@ namespace UltimateSearcher
             for (int i = 0; i < 10; i++)
             {
                 result_view[i].Text = results[1, s, i] + "\n";
+                url[i] = results[0, s, i];
             }
         }
 
