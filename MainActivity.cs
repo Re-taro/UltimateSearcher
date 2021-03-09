@@ -69,9 +69,8 @@ namespace UltimateSearcher
                         {
                             results[0, 0, i] = google_json["items"][i]["link"].ToString();
                             results[1, 0, i] = google_json["items"][i]["title"].ToString();
-                            url[i] = results[0, 0, i];
                         }
-                        catch
+                        catch (Exception)
                         {
                             break;
                         }
