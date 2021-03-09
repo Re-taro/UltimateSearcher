@@ -54,8 +54,6 @@ namespace UltimateSearcher
             }
             else
             {
-                bool g = true, t = true, q = true, y = true;
-
                 Task google = Task.Run(() =>
                 {
                     button_google.Enabled = false;
@@ -78,7 +76,6 @@ namespace UltimateSearcher
                         }
                     }
                     button_google.Enabled = true;
-                    g = false;
                 });
                 Task twitter = Task.Run(async () =>
                 {
@@ -101,7 +98,6 @@ namespace UltimateSearcher
                         i++;
                     }
                     button_twitter.Enabled = true;
-                    t = false;
                 });
                 Task qiita = Task.Run(() =>
                 {
@@ -118,7 +114,6 @@ namespace UltimateSearcher
                         results[1, 2, i] = qiita_json[i]["title"].ToString();
                     }
                     button_qiita.Enabled = true;
-                    q = false;
                 });
                 Task youtube = Task.Run(() =>
                 {
@@ -143,7 +138,6 @@ namespace UltimateSearcher
                         }
                     }
                     button_youtube.Enabled = true;
-                    y = false;
                 });
                 string result_view_url = HttpUtility.UrlEncode(searchword.Text);
             }
